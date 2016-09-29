@@ -24,7 +24,7 @@ export const FlexVideo = ({
 
 FlexVideo.propTypes = {
   containerClassName: PropTypes.string,
-  containerStyle: PropTypes.shape({}),
+  containerStyle: PropTypes.object,
   vimeo: PropTypes.bool,
   widescreen: PropTypes.bool,
 };

@@ -64,7 +64,7 @@ OffCanvasContent.propTypes = {
   children: PropTypes.node,
   className: PropTypes.string,
   contentBlockerClassName: PropTypes.string,
-  contentBlockerStyle: PropTypes.shape({}),
+  contentBlockerStyle: PropTypes.object,
   onContentBlockerClick: PropTypes.func,
 };
 
@@ -81,7 +81,7 @@ export const OffCanvasContainer = ({
   const innerClassNames =
     cx(innerClassName, cxStyles('off-canvas-wrapper-inner', { [`is-open-${open}`]: blocked }));
   const clonedChildren = Children.map(children, (child) => {
-    if (isValidElement(child) && child.type === OffCanvasContent) {
+    if (isValidElement(child)) {
       return cloneElement(child, { blocked });
     }
 
@@ -101,7 +101,7 @@ OffCanvasContainer.propTypes = {
   children: PropTypes.node,
   className: PropTypes.string,
   innerClassName: PropTypes.string,
-  innerStyle: PropTypes.shape({}),
+  innerStyle: PropTypes.object,
   open: PropTypes.oneOf(OFF_CANVAS_POSITIONS),
 };
 

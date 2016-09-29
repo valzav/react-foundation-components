@@ -41,47 +41,47 @@ import { FlexParent, FlexChild } from 'react-foundation-components/lib/global/fl
       <code>
 {
 `<FlexParent horizontalAlignment="left">
-<FlexChild>Aligned to</FlexChild>
-<FlexChild>the left</FlexChild>
+<FlexChild small={4}>Aligned to</FlexChild>
+<FlexChild small={4}>the left</FlexChild>
 </FlexParent>
 <FlexParent horizontalAlignment="right">
-<FlexChild>Aligned to</FlexChild>
-<FlexChild>the right</FlexChild>
+<FlexChild small={4}>Aligned to</FlexChild>
+<FlexChild small={4}>the right</FlexChild>
 </FlexParent>
 <FlexParent horizontalAlignment="center">
-<FlexChild>Aligned to</FlexChild>
-<FlexChild>the middle</FlexChild>
+<FlexChild small={4}>Aligned to</FlexChild>
+<FlexChild small={4}>the middle</FlexChild>
 </FlexParent>
 <FlexParent horizontalAlignment="justify">
-<FlexChild>Aligned to</FlexChild>
-<FlexChild>the edges</FlexChild>
+<FlexChild small={4}>Aligned to</FlexChild>
+<FlexChild small={4}>the edges</FlexChild>
 </FlexParent>
 <FlexParent horizontalAlignment="spaced">
-<FlexChild>Aligned to</FlexChild>
-<FlexChild>the space around</FlexChild>
+<FlexChild small={4}>Aligned to</FlexChild>
+<FlexChild small={4}>the space around</FlexChild>
 </FlexParent>`
 }
       </code>
     </pre>
     <FlexParent horizontalAlignment="left" style={rowStyle}>
-      <FlexChild style={styleOdd}>Aligned to</FlexChild>
-      <FlexChild style={styleEven}>the left</FlexChild>
+      <FlexChild small={4} style={styleOdd}>Aligned to</FlexChild>
+      <FlexChild small={4} style={styleEven}>the left</FlexChild>
     </FlexParent>
     <FlexParent horizontalAlignment="right" style={rowStyle}>
-      <FlexChild style={styleOdd}>Aligned to</FlexChild>
-      <FlexChild style={styleEven}>the right</FlexChild>
+      <FlexChild small={4} style={styleOdd}>Aligned to</FlexChild>
+      <FlexChild small={4} style={styleEven}>the right</FlexChild>
     </FlexParent>
     <FlexParent horizontalAlignment="center" style={rowStyle}>
-      <FlexChild style={styleOdd}>Aligned to</FlexChild>
-      <FlexChild style={styleEven}>the middle</FlexChild>
+      <FlexChild small={4} style={styleOdd}>Aligned to</FlexChild>
+      <FlexChild small={4} style={styleEven}>the middle</FlexChild>
     </FlexParent>
     <FlexParent horizontalAlignment="justify" style={rowStyle}>
-      <FlexChild style={styleOdd}>Aligned to</FlexChild>
-      <FlexChild style={styleEven}>the edges</FlexChild>
+      <FlexChild small={4} style={styleOdd}>Aligned to</FlexChild>
+      <FlexChild small={4} style={styleEven}>the edges</FlexChild>
     </FlexParent>
     <FlexParent horizontalAlignment="spaced" style={rowStyle}>
-      <FlexChild style={styleOdd}>Aligned to</FlexChild>
-      <FlexChild style={styleEven}>the space around</FlexChild>
+      <FlexChild small={4} style={styleOdd}>Aligned to</FlexChild>
+      <FlexChild small={4} style={styleEven}>the space around</FlexChild>
     </FlexParent>
     <hr />
     <h2>Vertical Alignment</h2>

@@ -1,10 +1,7 @@
 import React from 'react';
 
 import { Menu, MenuItem } from '../../../src/menu';
-import {
-  Menu as FlexMenu,
-  MenuItem as FlexMenuItem,
-} from '../../../lib/menu-flex'; // eslint-disable-line import/no-unresolved
+import { Menu as FlexMenu, MenuItem as FlexMenuItem } from '../../../lib/menu-flex';
 
 const iconStyle = {
   fontStyle: 'normal',

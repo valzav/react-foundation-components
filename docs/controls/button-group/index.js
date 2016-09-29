@@ -2,9 +2,7 @@ import React from 'react';
 
 import { Button } from '../../../src/button';
 import { ButtonGroup } from '../../../src/button-group';
-import {
-  ButtonGroup as FlexButtonGroup,
-} from '../../../lib/button-group-flex'; // eslint-disable-line import/no-unresolved
+import { ButtonGroup as FlexButtonGroup } from '../../../lib/button-group-flex';
 import { ShowForScreenReader } from '../../../src/visibility';
 
 const ButtonGroupPage = () => (

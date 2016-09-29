@@ -11,11 +11,8 @@ export const Float = createWrapperComponent({
   propTypes: {
     position: PropTypes.oneOf(FLOAT_POSITIONS).isRequired,
   },
-  mapProps: ({ position, ...props }) => ({
-    props,
-    classNames: {
-      [`float-${position}`]: includes(FLOAT_POSITIONS, position),
-    },
+  mapPropsToClassNames: ({ position }) => ({
+    [`float-${position}`]: includes(FLOAT_POSITIONS, position),
   }),
   defaultComponentClass: 'div',
 });
@@ -23,7 +20,7 @@ export const Float = createWrapperComponent({
 export const ClearFix = createWrapperComponent({
   displayName: 'ClearFix',
   styles,
-  mapProps: props => ({ props, classNames: 'clearfix' }),
+  mapPropsToClassNames: () => 'clearfix',
   defaultComponentClass: 'div',
 });
 

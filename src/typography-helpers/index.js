@@ -4,26 +4,26 @@ import styles from './_styles.scss';
 export const Subheader = createWrapperComponent({
   displayName: 'Subheader',
   styles,
-  mapProps: props => ({ props, classNames: 'subheader' }),
+  mapPropsToClassNames: () => 'subheader',
 });
 
 export const Lead = createWrapperComponent({
   displayName: 'Lead',
   styles,
-  mapProps: props => ({ props, classNames: 'lead' }),
+  mapPropsToClassNames: () => 'lead',
 });
 
 export const UnbulletedList = createWrapperComponent({
   displayName: 'UnbulletedList',
   styles,
-  mapProps: props => ({ props, classNames: 'no-bullet' }),
+  mapPropsToClassNames: () => 'no-bullet',
   defaultComponentClass: 'ul',
 });
 
 export const Statistic = createWrapperComponent({
   displayName: 'Statistic',
   styles,
-  mapProps: props => ({ props, classNames: 'stat' }),
+  mapPropsToClassNames: () => 'stat',
 });
 
 export const TypographyHelpers = { Subheader, Lead, UnbulletedList, Statistic };

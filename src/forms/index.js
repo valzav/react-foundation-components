@@ -3,7 +3,6 @@ import cx from 'classnames';
 import cxBinder from 'classnames/bind';
 import includes from 'lodash/includes';
 import isBlank from 'underscore.string/isBlank';
-import elementType from 'react-prop-types/lib/elementType';
 
 import { SCREEN_SIZES, LARGER_SCREEN_SIZES } from '../util/constants';
 import { TextAlignment } from '../text-alignment';
@@ -13,59 +12,29 @@ import styles from './_styles.scss';
 
 const cxStyles = cxBinder.bind(styles);
 
-function splitColumnProps(props) {
-  const columnProps = {};
-  const childProps = {};
-
-  Object.keys(props).forEach((prop) => {
-    const propValue = props[prop];
-
-    if (prop !== 'children'
-        && prop !== 'className'
-        && prop !== 'style'
-        && prop !== 'componentClass'
-        && Column.propTypes[prop]) {
-      columnProps[prop] = propValue;
-    } else {
-      childProps[prop] = propValue;
-    }
-  });
-
-  return { columnProps, childProps };
-}
-
 const ColumnWrapper = ({
+  children,
   column,
   columnClassName,
   columnStyle,
-  columnComponentClass,
-  childComponentClass: ChildComponentClass,
   ...restProps,
 }) => {
   if (column) {
-    const { columnProps, childProps } = splitColumnProps(restProps);
-
     return (
-      <Column
-        {...columnProps}
-        className={columnClassName}
-        style={columnStyle}
-        componentClass={columnComponentClass}
-      >
-        <ChildComponentClass {...childProps} />
+      <Column {...restProps} className={columnClassName} style={columnStyle}>
+        {children}
       </Column>
     );
   }
 
-  return <ChildComponentClass {...restProps} />;
+  return children;
 };
 
 ColumnWrapper.propTypes = {
+  children: PropTypes.node,
   column: PropTypes.bool,
   columnClassName: PropTypes.string,
-  columnStyle: PropTypes.shape({}),
-  columnComponentClass: elementType,
-  childComponentClass: elementType,
+  columnStyle: PropTypes.object,
 };
 
 export const FormFieldInput = ({
@@ -101,12 +70,12 @@ export const FormFieldInput = ({
       props.type = type;
   }
 
-  return <ColumnWrapper {...props} childComponentClass={ComponentClass} />;
+  return <ColumnWrapper {...restProps}><ComponentClass {...props} /></ColumnWrapper>;
 };
 
 FormFieldInput.propTypes = {
   className: PropTypes.string,
-  error: PropTypes.oneOfType([PropTypes.string, PropTypes.bool]),
+  error: PropTypes.bool,
   formFieldId: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
   id: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
   inline: PropTypes.bool,
@@ -142,21 +111,22 @@ export const FormFieldLabel = ({
   const labelId = isBlank(formFieldId) ? id : `${formFieldId}${inline ? 'Inline' : ''}Label`;
 
   return (
-    <ColumnWrapper
-      {...restProps}
-      childComponentClass={TextAlignment}
-      componentClass="label"
-      className={classNames}
-      htmlFor={labelForId}
-      id={labelId}
-    />
+    <ColumnWrapper {...restProps}>
+      <TextAlignment
+        {...restProps}
+        className={classNames}
+        componentClass="label"
+        htmlFor={labelForId}
+        id={labelId}
+      />
+    </ColumnWrapper>
   );
 };
 
 FormFieldLabel.propTypes = {
   className: PropTypes.string,
   middle: PropTypes.oneOfType([PropTypes.bool, PropTypes.oneOf(SCREEN_SIZES)]),
-  error: PropTypes.oneOfType([PropTypes.string, PropTypes.bool]),
+  error: PropTypes.bool,
   formFieldId: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
   htmlFor: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
   id: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
@@ -174,25 +144,21 @@ export const FormFieldError = ({
   const errorId = isBlank(formFieldId) ? id : `${formFieldId}Error`;
 
   return (
-    <ColumnWrapper
-      {...restProps}
-      childComponentClass="span"
-      className={classNames}
-      id={errorId}
-    />
+    <ColumnWrapper {...restProps}>
+      <span {...restProps} className={classNames} id={errorId} />
+    </ColumnWrapper>
   );
 };
 
 FormFieldError.propTypes = {
   className: PropTypes.string,
-  error: PropTypes.oneOfType([PropTypes.string, PropTypes.bool]),
+  error: PropTypes.bool,
   formFieldId: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
   id: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
 };
 
 export const FormFieldHelp = ({
   className,
-  error, // eslint-disable-line no-unused-vars
   formFieldId,
   id,
   ...restProps,
@@ -201,18 +167,14 @@ export const FormFieldHelp = ({
   const helpId = isBlank(formFieldId) ? id : `${formFieldId}Help`;
 
   return (
-    <ColumnWrapper
-      {...restProps}
-      childComponentClass="p"
-      className={classNames}
-      id={helpId}
-    />
+    <ColumnWrapper {...restProps}>
+      <p {...restProps} className={classNames} id={helpId} />
+    </ColumnWrapper>
   );
 };
 
 FormFieldHelp.propTypes = {
   className: PropTypes.string,
-  error: PropTypes.oneOfType([PropTypes.string, PropTypes.bool]),
   formFieldId: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
   id: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
 };
@@ -240,13 +202,8 @@ export const FormFieldInline = ({
   });
 
   return (
-    <ColumnWrapper
-      {...restProps}
-      childComponentClass="div"
-      className={classNames}
-      id={inlineId}
-    >
-      {clonedChildren}
+    <ColumnWrapper {...restProps}>
+      <div {...restProps} className={classNames} id={inlineId}>{clonedChildren}</div>
     </ColumnWrapper>
   );
 };
@@ -254,7 +211,7 @@ export const FormFieldInline = ({
 FormFieldInline.propTypes = {
   children: PropTypes.node,
   className: PropTypes.string,
-  error: PropTypes.oneOfType([PropTypes.string, PropTypes.bool]),
+  error: PropTypes.bool,
   formFieldId: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
   id: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
 };
@@ -262,31 +219,26 @@ FormFieldInline.propTypes = {
 export const FormFieldButton = ({
   containerClassName,
   containerStyle,
-  error, // eslint-disable-line no-unused-vars
   formFieldId,
   id,
   inline,
   ...restProps,
 }) => {
   const buttonId = isBlank(formFieldId) ? id : `${formFieldId}${inline ? 'Inline' : ''}Button`;
+  const content = <Button {...restProps} id={buttonId} />;
 
   if (inline) {
     const containerClassNames = cx(containerClassName, cxStyles('input-group-button'));
 
-    return (
-      <div className={containerClassNames} style={containerStyle}>
-        <Button {...restProps} id={buttonId} />
-      </div>
-    );
+    return <div className={containerClassNames} style={containerStyle}>{content}</div>;
   }
 
-  return <ColumnWrapper {...restProps} childComponentClass="Button" id={buttonId} />;
+  return <ColumnWrapper {...restProps}>{content}</ColumnWrapper>;
 };
 
 FormFieldButton.propTypes = {
   containerClassName: PropTypes.string,
-  containerStyle: PropTypes.shape({}),
-  error: PropTypes.oneOfType([PropTypes.string, PropTypes.bool]),
+  containerStyle: PropTypes.object,
   formFieldId: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
   id: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
   inline: PropTypes.bool,
@@ -325,7 +277,7 @@ export const FormField = ({
 FormField.propTypes = {
   children: PropTypes.node,
   className: PropTypes.string,
-  error: PropTypes.oneOfType([PropTypes.string, PropTypes.bool]),
+  error: PropTypes.bool,
   id: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
   grid: PropTypes.bool,
 };

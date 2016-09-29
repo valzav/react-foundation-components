@@ -28,17 +28,12 @@ export const MediaObjectSection = ({
         }
       )
     );
-  const flexProps = {};
-
-  if (IS_FLEX_MODE) {
-    flexProps.verticalAlignment = verticalAlignment;
-  }
 
   return (
     <FlexChild
       {...restProps}
       className={classNames}
-      {...flexProps}
+      verticalAlignment={IS_FLEX_MODE ? verticalAlignment : null}
     />
   );
 };

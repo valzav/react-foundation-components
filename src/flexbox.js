@@ -7,7 +7,7 @@ export {
   FormFieldHelp,
   FormFieldInline,
   FormFieldButton,
-} from './forms-flex'; // eslint-disable-line import/no-unresolved
+} from './forms-flex';
 export {
   Visibility,
   ShowForScreenSize,
@@ -36,7 +36,7 @@ export {
 export { TextAlignment } from './text-alignment';
 
 export { Button } from './button';
-export { ButtonGroup } from './button-group-flex'; // eslint-disable-line import/no-unresolved
+export { ButtonGroup } from './button-group-flex';
 export { CloseButton } from './close-button';
 export {
   Switch,
@@ -46,31 +46,19 @@ export {
   SwitchPadelLabel,
 } from './switch';
 
-export { Menu, MenuItem } from './menu-flex'; // eslint-disable-line import/no-unresolved
-export {
-  TopBar,
-  TopBarItem,
-  TopBarTitle,
-} from './top-bar-flex'; // eslint-disable-line import/no-unresolved
+export { Menu, MenuItem } from './menu-flex';
+export { TopBar, TopBarContent, TopBarItem, TopBarTitle } from './top-bar-flex';
 
 export { Accordion, AccordionItem } from './accordion';
 export { Callout } from './callout';
 export { Dropdown, LinkWithDropdown } from './dropdown';
-export {
-  MediaObject,
-  MediaObjectSection,
-} from './media-object-flex'; // eslint-disable-line import/no-unresolved
+export { MediaObject, MediaObjectSection } from './media-object-flex';
 export { MenuIcon } from './menu-icon';
 export { OffCanvas, OffCanvasContent, OffCanvasContainer } from './off-canvas';
 export { Reveal } from './reveal';
 export { Table } from './table';
 export { Tabs, Tab } from './tabs';
-export {
-  TitleBar,
-  TitleBarItem,
-  TitleBarTitle,
-  TitleBarMenuIcon,
-} from './title-bar-flex'; // eslint-disable-line import/no-unresolved
+export { TitleBar, TitleBarItem, TitleBarTitle, TitleBarMenuIcon } from './title-bar-flex';
 
 export { Badge } from './badge';
 export { FlexVideo } from './flex-video';

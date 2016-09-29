@@ -1,65 +1,77 @@
 import { PropTypes } from 'react';
 import includes from 'lodash/includes';
-import mapValues from 'lodash/mapValues';
 import decapitalize from 'underscore.string/decapitalize';
 
 import { CLASS_NAME_TYPES, SCREEN_SIZES, SCREEN_SIZE_SMALL } from '../constants';
 
-export function createScreenSizeProps(classNameMapping = []) {
-  return classNameMapping.reduce(
-    (columnAgg, { baseClassName, basePropName, flattenSmall, ...column }) => {
-      const props =
-        SCREEN_SIZES.reduce(
-          (sizeAgg, size) => {
-            let className = '';
-            let propName = '';
+function processScreenSizeClassNames(classNameMapping = [], callback) {
+  classNameMapping.forEach(
+    ({ baseClassName, basePropName, type, min, max, values, flattenSmall }) =>
+      SCREEN_SIZES.forEach((size) => {
+        let className = '';
+        let propName = '';
 
-            if (flattenSmall && size === SCREEN_SIZE_SMALL) {
-              className = baseClassName;
-              propName = decapitalize(basePropName);
-            } else {
-              className = size + (baseClassName ? `-${baseClassName}` : '');
-              propName = `${size}${basePropName}`;
-            }
+        if (flattenSmall && size === SCREEN_SIZE_SMALL) {
+          className = baseClassName;
+          propName = decapitalize(basePropName);
+        } else {
+          className = size + (baseClassName ? `-${baseClassName}` : '');
+          propName = `${size}${basePropName}`;
+        }
 
-            return {
-              ...sizeAgg,
-              [propName]: {
-                ...column,
-                className,
-              },
-            };
-          },
-          {}
-        );
-
-      return { ...columnAgg, ...props };
-    },
-    {}
+        callback({ className, propName, type, min, max, values });
+      })
   );
 }
 
-export function createScreenSizePropTypes(screenSizeProps = {}) {
-  return mapValues(screenSizeProps, ({ type, values }) => {
-    if (type === CLASS_NAME_TYPES.RANGE) {
-      return PropTypes.number;
-    } else if (type === CLASS_NAME_TYPES.ENUM) {
-      return PropTypes.oneOf(values);
-    }
+export function createScreenSizeClassNames(classNameMapping) {
+  const classNames = [];
 
-    return PropTypes.bool;
-  });
+  processScreenSizeClassNames(
+    classNameMapping,
+    ({ className, type, min, max, values }) => {
+      if (type === CLASS_NAME_TYPES.RANGE) {
+        for (let i = min; i <= max; i++) {
+          classNames.push(`${className}-${i}`);
+        }
+      } else if (type === CLASS_NAME_TYPES.ENUM) {
+        values.forEach((value) => classNames.push(`${className}-${value}`));
+      } else {
+        classNames.push(className);
+      }
+    }
+  );
+
+  return classNames;
 }
 
-export function createScreenSizeClassNames(screenSizeProps = {}, props = {}) {
+export function createScreenSizePropTypes(classNameMapping) {
+  const propTypes = {};
+
+  processScreenSizeClassNames(
+    classNameMapping,
+    ({ propName, type, values }) => {
+      let propType = PropTypes.bool;
+      if (type === CLASS_NAME_TYPES.RANGE) {
+        propType = PropTypes.number;
+      } else if (type === CLASS_NAME_TYPES.ENUM) {
+        propType = PropTypes.oneOf(values);
+      }
+
+      propTypes[propName] = propType;
+    }
+  );
+
+  return propTypes;
+}
+
+export function createScreenSizeClassNamesFromProps(classNameMapping, props = {}) {
   const classNames = {};
-  const remainingProps = {};
 
-  Object.keys(props).forEach((prop) => {
-    const propValue = props[prop];
-
-    if (screenSizeProps[prop]) {
-      const { className, type, min, max, values } = screenSizeProps[prop];
+  processScreenSizeClassNames(
+    classNameMapping,
+    ({ className, propName, type, min, max, values }) => {
+      const propValue = props[propName];
 
       if (type === CLASS_NAME_TYPES.RANGE) {
         classNames[`${className}-${propValue}`] =
@@ -69,10 +81,8 @@ export function createScreenSizeClassNames(screenSizeProps = {}, props = {}) {
       } else {
         classNames[className] = propValue;
       }
-    } else {
-      remainingProps[prop] = propValue;
     }
-  });
+  );
 
-  return { classNames, props: remainingProps };
+  return classNames;
 }

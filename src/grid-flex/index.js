@@ -10,17 +10,13 @@ import {
   FLEX_GRID_COLUMN_CLASS_NAMES,
 } from '../util/constants';
 import {
-  createScreenSizeProps,
   createScreenSizePropTypes,
-  createScreenSizeClassNames,
+  createScreenSizeClassNamesFromProps,
 } from '../util/screen-size';
 import { FlexParent, FlexChild } from '../flex';
 import styles from './_styles.scss';
 
 const cxStyles = cxBinder.bind(styles);
-
-const rowProps = createScreenSizeProps(FLEX_GRID_ROW_CLASS_NAMES);
-const columnProps = createScreenSizeProps(FLEX_GRID_COLUMN_CLASS_NAMES);
 
 export const Row = ({
   className,
@@ -29,17 +25,13 @@ export const Row = ({
   unstack,
   ...restProps,
 }) => {
-  const {
-    classNames: screenSizeClassNames,
-    props,
-  } = createScreenSizeClassNames(rowProps, restProps);
   const classNames =
     cx(
       className,
       cxStyles(
         'row',
+        createScreenSizeClassNamesFromProps(FLEX_GRID_ROW_CLASS_NAMES, restProps),
         {
-          ...screenSizeClassNames,
           collapse,
           expanded,
           [`${unstack}-unstack`]: includes(LARGER_SCREEN_SIZES, unstack),
@@ -47,11 +39,11 @@ export const Row = ({
       )
     );
 
-  return <FlexParent {...props} className={classNames} />;
+  return <FlexParent {...restProps} className={classNames} />;
 };
 
 Row.propTypes = {
-  ...createScreenSizePropTypes(rowProps),
+  ...createScreenSizePropTypes(FLEX_GRID_ROW_CLASS_NAMES),
   className: PropTypes.string,
   collapse: PropTypes.bool,
   expanded: PropTypes.bool,
@@ -64,28 +56,24 @@ export const Column = ({
   shrink,
   ...restProps,
 }) => {
-  const {
-    classNames: screenSizeClassNames,
-    props,
-  } = createScreenSizeClassNames(columnProps, restProps);
   const classNames =
     cx(
       className,
       cxStyles(
         'column',
+        createScreenSizeClassNamesFromProps(FLEX_GRID_COLUMN_CLASS_NAMES, restProps),
         {
-          ...screenSizeClassNames,
           [`${expand}-expand`]: includes(LARGER_SCREEN_SIZES, expand),
           shrink,
         }
       )
     );
 
-  return <FlexChild {...props} className={classNames} />;
+  return <FlexChild {...restProps} className={classNames} />;
 };
 
 Column.propTypes = {
-  ...createScreenSizePropTypes(columnProps),
+  ...createScreenSizePropTypes(FLEX_GRID_COLUMN_CLASS_NAMES),
   className: PropTypes.string,
   shrink: PropTypes.bool,
   expand: PropTypes.oneOf(SCREEN_SIZES),

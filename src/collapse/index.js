@@ -102,6 +102,7 @@ export const Collapse = ({
 Collapse.propTypes = {
   className: PropTypes.string,
   dimension: PropTypes.oneOf(['height', 'width']),
+  timeout: PropTypes.number,
   onEnter: PropTypes.func,
   onEntered: PropTypes.func,
   onEntering: PropTypes.func,

@@ -12,7 +12,6 @@ export const Tab = ({
   active,
   className,
   id,
-  eventKey, // eslint-disable-line no-unused-vars
   ...restProps,
 }) => {
   const classNames = cx(className, cxStyles('tabs-panel', { 'is-active': active }));
@@ -33,7 +32,6 @@ Tab.propTypes = {
   active: PropTypes.bool,
   className: PropTypes.string,
   id: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
-  eventKey: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
 };
 
 const TabTitle = ({

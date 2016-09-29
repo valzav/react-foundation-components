@@ -4,16 +4,13 @@ import { MediaObjectSection, MediaObject } from '../../../src/media-object';
 import {
   MediaObjectSection as FlexMediaObjectSection,
   MediaObject as FlexMediaObject,
-} from '../../../lib/media-object-flex'; // eslint-disable-line import/no-unresolved
+} from '../../../lib/media-object-flex';
 
 const MediaObjectPage = () => (
   <div>
     <MediaObject>
       <MediaObjectSection>
-        <img
-          role="presentation"
-          src="http://foundation.zurb.com/sites/docs/assets/img/avatar-1.jpg"
-        />
+        <img src="http://foundation.zurb.com/sites/docs/assets/img/avatar-1.jpg" />
       </MediaObjectSection>
       <MediaObjectSection>
         <h4>Dreams feel real while we're in them.</h4>
@@ -27,10 +24,7 @@ const MediaObjectPage = () => (
     <br />
     <MediaObject>
       <MediaObjectSection verticalAlignment="middle">
-        <img
-          role="presentation"
-          src="http://foundation.zurb.com/sites/docs/assets/img/avatar-2.jpg"
-        />
+        <img src="http://foundation.zurb.com/sites/docs/assets/img/avatar-2.jpg" />
       </MediaObjectSection>
       <MediaObjectSection>
         <h4>Why is it so important to dream?</h4>
@@ -47,19 +41,13 @@ const MediaObjectPage = () => (
         </p>
       </MediaObjectSection>
       <MediaObjectSection verticalAlignment="bottom">
-        <img
-          role="presentation"
-          src="http://foundation.zurb.com/sites/docs/assets/img/avatar-3.jpg"
-        />
+        <img src="http://foundation.zurb.com/sites/docs/assets/img/avatar-3.jpg" />
       </MediaObjectSection>
     </MediaObject>
     <br />
     <MediaObject stackForSmall>
       <MediaObjectSection>
-        <img
-          role="presentation"
-          src="http://foundation.zurb.com/sites/docs/assets/img/rectangle-1.jpg"
-        />
+        <img src="http://foundation.zurb.com/sites/docs/assets/img/rectangle-1.jpg" />
       </MediaObjectSection>
       <MediaObjectSection>
         <h4>I Can Stack.</h4>
@@ -72,10 +60,7 @@ const MediaObjectPage = () => (
     <br />
     <FlexMediaObject>
       <FlexMediaObjectSection verticalAlignment="middle">
-        <img
-          role="presentation"
-          src="http://foundation.zurb.com/sites/docs/assets/img/avatar-2.jpg"
-        />
+        <img src="http://foundation.zurb.com/sites/docs/assets/img/avatar-2.jpg" />
       </FlexMediaObjectSection>
       <FlexMediaObjectSection main>
         <h4>Why is it so important to dream?</h4>
@@ -92,10 +77,7 @@ const MediaObjectPage = () => (
         </p>
       </FlexMediaObjectSection>
       <FlexMediaObjectSection verticalAlignment="bottom">
-        <img
-          role="presentation"
-          src="http://foundation.zurb.com/sites/docs/assets/img/avatar-3.jpg"
-        />
+        <img src="http://foundation.zurb.com/sites/docs/assets/img/avatar-3.jpg" />
       </FlexMediaObjectSection>
     </FlexMediaObject>
   </div>

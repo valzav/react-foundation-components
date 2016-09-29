@@ -65,6 +65,7 @@ Button.propTypes = {
   href: PropTypes.string,
   size: PropTypes.oneOf(COMPONENT_SIZES),
   target: PropTypes.string,
+  type: PropTypes.oneOf(['button', 'reset', 'submit']),
 };
 Button.defaultProps = {
   type: 'button',
