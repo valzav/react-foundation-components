@@ -1,14 +1,16 @@
 import React, { Component } from 'react';
 
-import { TopBar, TopBarContent, TopBarItem, TopBarTitle } from '../../../src/top-bar';
+import { TopBar, TopBarItem, TopBarTitle } from '../../../src/top-bar';
 import {
   TopBar as FlexTopBar,
-  TopBarContent as FlexTopBarContent,
   TopBarItem as FlexTopBarItem,
   TopBarTitle as FlexTopBarTitle,
-} from '../../../lib/top-bar-flex';
+} from '../../../lib/top-bar-flex'; // eslint-disable-line import/no-unresolved
 import { Menu, MenuItem } from '../../../src/menu';
-import { Menu as FlexMenu, MenuItem as FlexMenuItem } from '../../../lib/menu-flex';
+import {
+  Menu as FlexMenu,
+  MenuItem as FlexMenuItem,
+} from '../../../lib/menu-flex'; // eslint-disable-line import/no-unresolved
 import { Button } from '../../../src/button';
 import { MenuIcon } from '../../../src/menu-icon';
 import { ShowForScreenSize, HideForScreenSize } from '../../../src/visibility';
@@ -29,21 +31,19 @@ export default class TopBarPage extends Component {
               <MenuItem text>Site Title</MenuItem>
             </Menu>
           </TopBarTitle>
-          <TopBarContent>
-            <TopBarItem position="left">
-              <Menu>
-                <MenuItem><a href="#">One</a></MenuItem>
-                <MenuItem><a href="#">Two</a></MenuItem>
-                <MenuItem><a href="#">Three</a></MenuItem>
-              </Menu>
-            </TopBarItem>
-            <TopBarItem position="right">
-              <Menu>
-                <MenuItem><input type="search" placeholder="Search" /></MenuItem>
-                <MenuItem><Button>Search</Button></MenuItem>
-              </Menu>
-            </TopBarItem>
-          </TopBarContent>
+          <TopBarItem position="left">
+            <Menu>
+              <MenuItem><a href="#">One</a></MenuItem>
+              <MenuItem><a href="#">Two</a></MenuItem>
+              <MenuItem><a href="#">Three</a></MenuItem>
+            </Menu>
+          </TopBarItem>
+          <TopBarItem position="right">
+            <Menu>
+              <MenuItem><input type="search" placeholder="Search" /></MenuItem>
+              <MenuItem><Button>Search</Button></MenuItem>
+            </Menu>
+          </TopBarItem>
         </TopBar>
         <br />
         <TopBar stack="large">
@@ -52,21 +52,19 @@ export default class TopBarPage extends Component {
               <MenuItem text>Site Title</MenuItem>
             </Menu>
           </TopBarTitle>
-          <TopBarContent>
-            <TopBarItem position="left">
-              <Menu>
-                <MenuItem><a href="#">One</a></MenuItem>
-                <MenuItem><a href="#">Two</a></MenuItem>
-                <MenuItem><a href="#">Three</a></MenuItem>
-              </Menu>
-            </TopBarItem>
-            <TopBarItem position="right">
-              <Menu>
-                <MenuItem><input type="search" placeholder="Search" /></MenuItem>
-                <MenuItem><Button>Search</Button></MenuItem>
-              </Menu>
-            </TopBarItem>
-          </TopBarContent>
+          <TopBarItem position="left">
+            <Menu>
+              <MenuItem><a href="#">One</a></MenuItem>
+              <MenuItem><a href="#">Two</a></MenuItem>
+              <MenuItem><a href="#">Three</a></MenuItem>
+            </Menu>
+          </TopBarItem>
+          <TopBarItem position="right">
+            <Menu>
+              <MenuItem><input type="search" placeholder="Search" /></MenuItem>
+              <MenuItem><Button>Search</Button></MenuItem>
+            </Menu>
+          </TopBarItem>
         </TopBar>
         <br />
         <TopBar stack="medium">
@@ -78,10 +76,7 @@ export default class TopBarPage extends Component {
               <MenuItem text>Site Title</MenuItem>
             </Menu>
           </TopBarTitle>
-          <ShowForScreenSize
-            screenSize={this.state.show ? 'small' : 'large'}
-            componentClass={TopBarContent}
-          >
+          <ShowForScreenSize screenSize={this.state.show ? 'small' : 'large'}>
             <TopBarItem position="left">
               <Menu vertical horizontal="large">
                 <MenuItem><a href="#">One</a></MenuItem>
@@ -104,21 +99,19 @@ export default class TopBarPage extends Component {
               <FlexMenuItem text>Site Title</FlexMenuItem>
             </FlexMenu>
           </FlexTopBarTitle>
-          <FlexTopBarContent>
-            <FlexTopBarItem position="left">
-              <FlexMenu>
-                <FlexMenuItem><a href="#">One</a></FlexMenuItem>
-                <FlexMenuItem><a href="#">Two</a></FlexMenuItem>
-                <FlexMenuItem><a href="#">Three</a></FlexMenuItem>
-              </FlexMenu>
-            </FlexTopBarItem>
-            <FlexTopBarItem position="right">
-              <FlexMenu>
-                <FlexMenuItem><input type="search" placeholder="Search" /></FlexMenuItem>
-                <FlexMenuItem><Button>Search</Button></FlexMenuItem>
-              </FlexMenu>
-            </FlexTopBarItem>
-          </FlexTopBarContent>
+          <FlexTopBarItem position="left">
+            <FlexMenu>
+              <FlexMenuItem><a href="#">One</a></FlexMenuItem>
+              <FlexMenuItem><a href="#">Two</a></FlexMenuItem>
+              <FlexMenuItem><a href="#">Three</a></FlexMenuItem>
+            </FlexMenu>
+          </FlexTopBarItem>
+          <FlexTopBarItem position="right">
+            <FlexMenu>
+              <FlexMenuItem><input type="search" placeholder="Search" /></FlexMenuItem>
+              <FlexMenuItem><Button>Search</Button></FlexMenuItem>
+            </FlexMenu>
+          </FlexTopBarItem>
         </FlexTopBar>
         <br />
         <FlexTopBar stack="large">
@@ -127,21 +120,19 @@ export default class TopBarPage extends Component {
               <FlexMenuItem text>Site Title</FlexMenuItem>
             </FlexMenu>
           </FlexTopBarTitle>
-          <FlexTopBarContent>
-            <FlexTopBarItem position="left">
-              <FlexMenu>
-                <FlexMenuItem><a href="#">One</a></FlexMenuItem>
-                <FlexMenuItem><a href="#">Two</a></FlexMenuItem>
-                <FlexMenuItem><a href="#">Three</a></FlexMenuItem>
-              </FlexMenu>
-            </FlexTopBarItem>
-            <FlexTopBarItem position="right">
-              <FlexMenu>
-                <FlexMenuItem><input type="search" placeholder="Search" /></FlexMenuItem>
-                <FlexMenuItem><Button>Search</Button></FlexMenuItem>
-              </FlexMenu>
-            </FlexTopBarItem>
-          </FlexTopBarContent>
+          <FlexTopBarItem position="left">
+            <FlexMenu>
+              <FlexMenuItem><a href="#">One</a></FlexMenuItem>
+              <FlexMenuItem><a href="#">Two</a></FlexMenuItem>
+              <FlexMenuItem><a href="#">Three</a></FlexMenuItem>
+            </FlexMenu>
+          </FlexTopBarItem>
+          <FlexTopBarItem position="right">
+            <FlexMenu>
+              <FlexMenuItem><input type="search" placeholder="Search" /></FlexMenuItem>
+              <FlexMenuItem><Button>Search</Button></FlexMenuItem>
+            </FlexMenu>
+          </FlexTopBarItem>
         </FlexTopBar>
         <br />
         <FlexTopBar stack="medium">
@@ -155,21 +146,24 @@ export default class TopBarPage extends Component {
           </FlexTopBarTitle>
           <ShowForScreenSize
             screenSize={this.state.show ? 'small' : 'large'}
-            componentClass={FlexTopBarContent}
+            componentClass={FlexTopBarItem}
+            position="left"
           >
-            <FlexTopBarItem position="left">
-              <FlexMenu vertical horizontal="large">
-                <FlexMenuItem><a href="#">One</a></FlexMenuItem>
-                <FlexMenuItem><a href="#">Two</a></FlexMenuItem>
-                <FlexMenuItem><a href="#">Three</a></FlexMenuItem>
-              </FlexMenu>
-            </FlexTopBarItem>
-            <FlexTopBarItem position="right">
-              <FlexMenu>
-                <FlexMenuItem><input type="search" placeholder="Search" /></FlexMenuItem>
-                <FlexMenuItem><Button>Search</Button></FlexMenuItem>
-              </FlexMenu>
-            </FlexTopBarItem>
+            <FlexMenu vertical horizontal="large">
+              <FlexMenuItem><a href="#">One</a></FlexMenuItem>
+              <FlexMenuItem><a href="#">Two</a></FlexMenuItem>
+              <FlexMenuItem><a href="#">Three</a></FlexMenuItem>
+            </FlexMenu>
+          </ShowForScreenSize>
+          <ShowForScreenSize
+            screenSize={this.state.show ? 'small' : 'large'}
+            componentClass={FlexTopBarItem}
+            position="right"
+          >
+            <FlexMenu>
+              <FlexMenuItem><input type="search" placeholder="Search" /></FlexMenuItem>
+              <FlexMenuItem><Button>Search</Button></FlexMenuItem>
+            </FlexMenu>
           </ShowForScreenSize>
         </FlexTopBar>
       </div>

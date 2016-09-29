@@ -6,10 +6,11 @@ import {
     as renderSubtreeIntoContainer,
 } from 'react-dom';
 import elementType from 'react-prop-types/lib/elementType';
-import mountable from 'react-prop-types/lib/mountable';
+import componentOrElement from 'react-prop-types/lib/componentOrElement';
 import Overlay from 'react-overlays/lib/Overlay';
 import Transition from 'react-overlays/lib/Transition';
-import { getPosition } from 'react-overlays/lib/utils/overlayPositionUtils';
+import getOffset from 'dom-helpers/query/offset';
+import getPosition from 'dom-helpers/query/position';
 import ownerDocument from 'react-overlays/lib/utils/ownerDocument';
 import getContainer from 'react-overlays/lib/utils/getContainer';
 import contains from 'dom-helpers/query/contains';
@@ -36,7 +37,8 @@ function showOverlay(state) {
 function adjustPosition(elem, getOverlayTarget, getOverlayContainer, position, alignment) {
   const target = getOverlayTarget();
   const container = getOverlayContainer();
-  const targetPosition = getPosition(target, container);
+  const targetPosition =
+    container.tagName === 'BODY' ? getOffset(target) : getPosition(target, container);
 
   if (position === 'top') {
     css(elem, 'top', `${targetPosition.top - parseInt(css(elem, 'height'), 10)}px`);
@@ -107,7 +109,7 @@ export default class OverlayTrigger extends Component {
     alignment: PropTypes.oneOf(OVERLAY_ALIGNMENTS),
     children: PropTypes.node,
     closeOnClickOutside: PropTypes.bool,
-    container: React.PropTypes.oneOfType([mountable, React.PropTypes.func]),
+    container: React.PropTypes.oneOfType([componentOrElement, React.PropTypes.func]),
     onBlur: PropTypes.func,
     onClick: PropTypes.func,
     onFocus: PropTypes.func,
@@ -141,20 +143,20 @@ export default class OverlayTrigger extends Component {
       window.addEventListener('resize', this.handleResize);
     }
 
-    this._mountNode = document.createElement('div');
+    this.mountNode = document.createElement('div');
     this.renderOverlay();
   }
 
   componentDidUpdate() {
-    if (this._mountNode) {
+    if (this.mountNode) {
       this.renderOverlay();
     }
   }
 
   componentWillUnmount() {
     window.removeEventListener('resize', this.handleResize);
-    unmountComponentAtNode(this._mountNode);
-    this._mountNode = null;
+    unmountComponentAtNode(this.mountNode);
+    this.mountNode = null;
   }
 
   getOverlayTarget = () => findDOMNode(this);
@@ -280,9 +282,9 @@ export default class OverlayTrigger extends Component {
     const { position, alignment } = this.props;
     const show = showOverlay(this.state);
 
-    if (show && this._elem) {
+    if (show && this.elem) {
       adjustPosition(
-        this._elem,
+        this.elem,
         this.getOverlayTarget,
         this.getOverlayContainer,
         position,
@@ -292,7 +294,7 @@ export default class OverlayTrigger extends Component {
   };
 
   handleEntering = (elem) => {
-    this._elem = elem;
+    this.elem = elem;
 
     this.handleResize();
   }
@@ -322,14 +324,14 @@ export default class OverlayTrigger extends Component {
         rootClose={closeOnClickOutside}
         show={show}
         target={this.getOverlayTarget}
-        transition={this._transition}
+        transition={this.transition}
       >
         {clonedOverlay}
       </Overlay>
     );
   };
 
-  renderOverlay = () => renderSubtreeIntoContainer(this, this._overlay, this._mountNode);
+  renderOverlay = () => renderSubtreeIntoContainer(this, this.overlay, this.mountNode);
 
   render() {
     const { children } = this.props;
@@ -350,7 +352,7 @@ export default class OverlayTrigger extends Component {
       clonedChild = <span {...childProps}>{children}</span>;
     }
 
-    this._overlay = this.createOverlay();
+    this.overlay = this.createOverlay();
 
     return clonedChild;
   }
