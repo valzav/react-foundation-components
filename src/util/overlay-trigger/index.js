@@ -9,7 +9,7 @@ import elementType from 'react-prop-types/lib/elementType';
 import mountable from 'react-prop-types/lib/mountable';
 import Overlay from 'react-overlays/lib/Overlay';
 import Transition from 'react-overlays/lib/Transition';
-import { getPosition } from 'react-overlays/lib/utils/overlayPositionUtils';
+import getPosition from 'dom-helpers/query/position';
 import ownerDocument from 'react-overlays/lib/utils/ownerDocument';
 import getContainer from 'react-overlays/lib/utils/getContainer';
 import contains from 'dom-helpers/query/contains';
